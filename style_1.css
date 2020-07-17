@@ -1,0 +1,81 @@
+html,
+body,
+div,
+span, 
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6, 
+p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+.page {
+    margin: 10px 50px 10px;
+}
+
+.side {
+    margin-bottom: 20px;
+}
+
+.side .side-content {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.base{
+    margin-bottom: 20px;
+}
+
+.base
+.base-item {
+    display: inline;
+    margin-right: 10px;
+}
+
+.content
+.base
+h2 {
+    margin-bottom: 10px;
+}
+
+.base
+.base-item
+.base-item-first {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+
+.col{
+    margin-bottom: 20px;
+}
+
+.col
+h2 {
+    margin-bottom: 10px;
+}
+
+.col
+.col-item {
+    margin-bottom: 10px;
+}
+
+.col
+.col-item
+.col-item-first {
+    font-weight: bold;
+}

@@ -1,0 +1,121 @@
+html,
+body,
+div,
+span, 
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6, 
+p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+.page
+.side {
+    background-color: gray;
+}
+
+.page 
+.side 
+.side-content {
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 20px 20px;
+
+}
+
+.content
+.base{
+    margin-bottom: 62px;
+    border: 1px white;
+}
+
+
+.content
+.base
+h2 {
+    float: left;
+    background-color: darkgrey;
+    padding: 30px;
+    font-weight: lighter;
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+.content
+.base
+.base-item {
+    display: inline;
+    margin-right: 10px;
+}
+
+.content
+.base
+.base-item
+.base-item-first {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.content 
+.base
+.base-item
+span{
+    display: inline;
+    margin-right: 10px;
+}
+
+.content
+.col {
+    margin-bottom: 32px;
+    border: 1px white;
+}
+
+.content
+.col 
+h2 {
+    float: left;
+    background-color: darkgrey;
+    padding: 30px;
+    font-weight: lighter;
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+.content
+.col
+.col-item{
+    margin-bottom: 10px;
+}
+
+.content
+.col
+.col-item
+.col-item-first{
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.content
+.col
+.col-item
+.col-item-content,
+.col-item-first
+ {
+    display: inline;
+    margin-right: 10px;
+}
