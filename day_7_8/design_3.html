@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>day_7_8 第二个编程任务 float 实现</title>
+    <title>day_7_8 第二个编程任务 Flexbox 实现</title>
     <style>
         html,
         body,
@@ -142,15 +142,18 @@
         .header {
             width: 100%;
             background-color: black;
+            display: -webkit-flex;
+            display: flex;
+            flex-direction: row;
         }
 
         .header 
         .header-logo {
             padding: 30px 0px 30px 150px;
             font-size: 30px;
-            display: inline-block;
         }
 
+        
         .header 
         .header-logo 
         a {
@@ -159,22 +162,8 @@
 
         .header 
         .header-linklist {
-            float: right;
-        }
-
-        .header 
-        .header-linklist 
-        ul {
-            margin-top: 20px;
-            margin-right: 60px;
-        }
-
-        .header 
-        .header-linklist 
-        ul 
-        li {
-            /* display: inline-block; */
-            margin-right: 10px;
+            margin-left: 1000px;
+            margin-top: 10px;
         }
 
         .header 
@@ -189,25 +178,27 @@
             width: 100%;
             height: 300px;
             background-color: yellowgreen;
+            display: -webkit-flex;
+            display: flex;
+            flex-direction: row-reverse;
         }
 
         .banner 
         .banner-list {
-            float: right;
             margin-top: 220px;
-            margin-right: 100px;
+            margin-right: 150px;
         }
 
         .banner 
         .banner-list 
         ul 
         li {
-            /* display: inline-block; */
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.25);
             border: 1px solid black;
         }
 
+        
         .banner 
         .banner-list 
         ul 
@@ -231,17 +222,14 @@
             display: inline-block;
             vertical-align:bottom;
         }
-
         .site-nav 
         .site-nav-list 
         ul
         li {
-            float: left;
             padding: 10px 15px 0px 10px;
             border: 1px solid rgba(0, 0, 0, 0.5);
             border-radius: 10px 10px 0px 0px;
             background-color: silver;
-           
         }
 
         .site-nav 
@@ -250,14 +238,6 @@
         .active {
             border-bottom: 0px ;
             background-color: white;
-        }
-
-        .site-nav 
-        .site-nav-list 
-        ul
-        li 
-        a {
-            color: black;
         }
 
         .content {
@@ -288,6 +268,8 @@
             padding-top: 30px;
             color: white;
         }
+
+
 
     </style>
 </head>
@@ -323,7 +305,7 @@
     </div>
     <div class="site-nav">
         <div class="site-nav-list ">
-            <ul >
+            <ul>
                 <li class="active">
                     <a href="">HOME</a>
                 </li>

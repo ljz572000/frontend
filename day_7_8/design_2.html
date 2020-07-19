@@ -1,97 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>day_7_8 第二个编程任务 float 实现</title>
+    <title>day_7_8 第二个编程任务 position 实现</title>
     <style>
-        html,
-        body,
-        div,
-        span,
-        applet,
-        object,
-        iframe,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        p,
-        blockquote,
-        pre,
-        a,
-        abbr,
-        acronym,
-        address,
-        big,
-        cite,
-        code,
-        del,
-        dfn,
-        em,
-        img,
-        ins,
-        kbd,
-        q,
-        s,
-        samp,
-        small,
-        strike,
-        strong,
-        sub,
-        sup,
-        tt,
-        var,
-        b,
-        u,
-        i,
-        center,
-        dl,
-        dt,
-        dd,
-        ol,
-        ul,
-        li,
-        fieldset,
-        form,
-        label,
-        legend,
-        table,
-        caption,
-        tbody,
-        tfoot,
-        thead,
-        tr,
-        th,
-        td,
-        article,
-        aside,
-        canvas,
-        details,
-        embed,
-        figure,
-        figcaption,
-        footer,
-        header,
-        hgroup,
-        menu,
-        nav,
-        output,
-        ruby,
-        section,
-        summary,
-        time,
-        mark,
-        audio,
-        video {
+        * {
             margin: 0;
             padding: 0;
             border: 0;
         }
 
+        a {
+            color: black;
+        }
+        
         ol,
         ul {
             list-style-type: none;
@@ -139,6 +62,7 @@
             text-decoration: none;
         }
 
+        
         .header {
             width: 100%;
             background-color: black;
@@ -148,33 +72,22 @@
         .header-logo {
             padding: 30px 0px 30px 150px;
             font-size: 30px;
-            display: inline-block;
         }
 
+        
         .header 
         .header-logo 
         a {
             color: white;
         }
 
+        
         .header 
         .header-linklist {
-            float: right;
-        }
-
-        .header 
-        .header-linklist 
-        ul {
-            margin-top: 20px;
-            margin-right: 60px;
-        }
-
-        .header 
-        .header-linklist 
-        ul 
-        li {
-            /* display: inline-block; */
-            margin-right: 10px;
+            width: 20%;
+            position: relative;
+            bottom: 90px;
+            left: 1200px;
         }
 
         .header 
@@ -193,16 +106,16 @@
 
         .banner 
         .banner-list {
-            float: right;
-            margin-top: 220px;
-            margin-right: 100px;
+            position: relative;
+            width: 10%;
+            top: 220px;
+            left: 1300px;
         }
 
         .banner 
         .banner-list 
         ul 
         li {
-            /* display: inline-block; */
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.25);
             border: 1px solid black;
@@ -236,12 +149,11 @@
         .site-nav-list 
         ul
         li {
-            float: left;
+            position: relative;
             padding: 10px 15px 0px 10px;
             border: 1px solid rgba(0, 0, 0, 0.5);
             border-radius: 10px 10px 0px 0px;
             background-color: silver;
-           
         }
 
         .site-nav 
@@ -250,14 +162,6 @@
         .active {
             border-bottom: 0px ;
             background-color: white;
-        }
-
-        .site-nav 
-        .site-nav-list 
-        ul
-        li 
-        a {
-            color: black;
         }
 
         .content {
@@ -291,7 +195,6 @@
 
     </style>
 </head>
-
 <body>
     <div class="header">
         <div class="header-logo">
@@ -380,5 +283,4 @@
         </div>
     </div>
 </body>
-
 </html>
