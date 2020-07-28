@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day_12_15</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        body::-webkit-scrollbar {
+            /*滚动条整体部分，其中的属性有width,height,background,border等（就和一个块级元素一样）（位置1）*/
+            width: 4px;
+            height: 4px;
+        }
+
+        body::-webkit-scrollbar-track {
+            /*外层轨道，可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果（位置3）*/
+            background: #f6f6f6;
+            border-radius: 2px;
+
+        }
+
+        body::-webkit-scrollbar-thumb {
+            /*滚动条里面可以拖动的那部分（位置5）*/
+            background: #aaa;
+            border-radius: 2px;
+
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: #747474;
+        }
+
+        body::-webkit-scrollbar-corner {
+            /*边角（位置6）*/
+            background: #f6f6f6;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .left-nav {
+            max-width: 100px;
+            min-height: 320px;
+            height: 100%;
+            background-color: rgb(29, 37, 49);
+            float: left;
+        }
+
+        .left-nav .navs {
+            padding-top: 20px;
+        }
+
+        .left-nav .navs .nav {
+            width: 60px;
+            height: 60px;
+            margin: 0px 20px 20px;
+            border-radius: 50%;
+        }
+
+        .left-nav .navs .nav:hover {
+            cursor: pointer;
+        }
+
+        .left-nav .navs .item-1 {
+            background-image: -moz-linear-gradient(90deg, rgb(25, 145, 235) 0%, rgb(46, 161, 248) 100%);
+            background-image: -webkit-linear-gradient(90deg, rgb(25, 145, 235) 0%, rgb(46, 161, 248) 100%);
+            background-image: -ms-linear-gradient(90deg, rgb(25, 145, 235) 0%, rgb(46, 161, 248) 100%);
+        }
+
+        .left-nav .navs .item-1 .icon {
+            width: 26px;
+            height: 24px;
+            float: left;
+            margin: 17px;
+            background-image: url(./images/Item\ 1.png);
+        }
+
+        .left-nav .navs .item-2 {
+            background-image: -moz-linear-gradient(90deg, rgb(127, 91, 230) 1%, rgb(157, 143, 227) 100%);
+            background-image: -webkit-linear-gradient(90deg, rgb(127, 91, 230) 1%, rgb(157, 143, 227) 100%);
+            background-image: -ms-linear-gradient(90deg, rgb(127, 91, 230) 1%, rgb(157, 143, 227) 100%);
+        }
+
+        .left-nav .navs .item-2 .icon {
+            width: 25px;
+            height: 35px;
+            float: left;
+            margin: 13px 0px 0px 17px;
+            background-image: url(./images/Item\ 2.png);
+        }
+
+        .left-nav .navs .item-3 {
+            background-image: -moz-linear-gradient(-90deg, rgb(244, 84, 56) 0%, rgb(203, 39, 10) 100%);
+            background-image: -webkit-linear-gradient(-90deg, rgb(244, 84, 56) 0%, rgb(203, 39, 10) 100%);
+            background-image: -ms-linear-gradient(-90deg, rgb(244, 84, 56) 0%, rgb(203, 39, 10) 100%);
+        }
+
+        .left-nav .navs .item-3 .icon {
+            width: 34px;
+            height: 24px;
+            float: left;
+            margin: 17px 0px 0px 14px;
+            background-image: url(./images/Item\ 3.png);
+            background-repeat: no-repeat;
+        }
+
+
+        .left-nav .navs .add {
+            border-width: 3px;
+            border-color: rgb(45, 56, 72);
+            border-style: solid;
+            border-radius: 50%;
+            box-sizing: border-box;
+        }
+
+        .left-nav .navs .add .icon {
+            width: 20px;
+            height: 20px;
+            float: left;
+            margin: 17px 0px 0px 17px;
+            background-image: url(./images/Plus\ Icon.png);
+            background-repeat: no-repeat;
+        }
+
+        .left-nav .bottom {
+            position: fixed;
+            width: 100px;
+            height: 26px;
+            bottom: 5%;
+        }
+
+        .left-nav .bottom .grid {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            margin-left: 26px;
+            margin-top: 10px;
+            background-image: url(./images/Grid.png);
+            cursor: pointer;
+        }
+
+        .left-nav .bottom .setting {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            margin-left: 16px;
+            margin-top: 10px;
+            background-image: url(./images/Settings.png);
+            cursor: pointer;
+        }
+
+        .secondary {
+            height: 100%;
+            min-width: 250px;
+            background-color: rgb(34, 44, 60);
+            float: left;
+            padding-top: 15px;
+            box-sizing: border-box;
+        }
+
+        .secondary .parts .part {
+            margin-top: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+            /* background-color: rgb(203, 39, 10); */
+        }
+
+        .secondary .parts .part .header .header-name {
+            font-size: 12px;
+            color: rgb(91, 103, 121);
+            text-transform: uppercase;
+            line-height: 3.333;
+            text-align: left;
+        }
+
+        .secondary .parts .part .item .item-name {
+            font-size: 14px;
+            color: rgb(183, 192, 205);
+            text-align: left;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .secondary .parts .border {
+            width: 210px;
+            height: 1px;
+            margin-top: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .header-setting {
+            width: 16px;
+            height: 16px;
+            float: right;
+            margin-top: 10px;
+            background: url(./images/Settings.png);
+            cursor: pointer;
+        }
+
+        .secondary .server-capacity {
+            min-width: 250px;
+            position: fixed;
+            height: 40px;
+            bottom: 2%;
+            padding-left: 15px;
+            padding-right: 15px;
+            box-sizing: border-box;
+        }
+
+        .secondary .server-capacity .title-bar .title {
+            font-size: 14px;
+            color: rgb(255, 255, 255);
+            line-height: 1.2;
+        }
+
+        .secondary .server-capacity .title-bar .money {
+            float: right;
+            font-size: 14px;
+            color: rgb(255, 255, 255);
+            line-height: 1.2;
+        }
+
+        .secondary .server-capacity .bar {
+            width: 220px;
+            height: 4px;
+            background-color: rgb(71, 83, 100);
+            opacity: 0.302;
+            margin-top: 15px;
+        }
+
+        .secondary .server-capacity .bar .current-bar {
+            width: 40px;
+            height: 4px;
+            background-image: -moz-linear-gradient(0deg, rgb(127, 91, 230) 1%, rgb(157, 143, 227) 100%);
+            background-image: -webkit-linear-gradient(0deg, rgb(127, 91, 230) 1%, rgb(157, 143, 227) 100%);
+            background-image: -ms-linear-gradient(0deg, rgb(127, 91, 230) 1%, rgb(157, 143, 227) 100%);
+
+        }
+
+        .third {
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: 350px;
+        }
+
+        .third .top {
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
+            padding-top: 10px;
+            padding-bottom: 30px;
+        }
+
+        .third .top .top-title {
+            font-size: 24px;
+            color: rgb(53, 64, 82);
+            line-height: 1.2;
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        .third .top .profile {
+            float: right;
+            margin-right: 20px;
+        }
+
+        .third .top .profile .photo {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            margin-right: 20px;
+            vertical-align: top;
+            border-radius: 50%;
+            border: 1px solid white;
+            background-image: url(./images/Photo.png);
+            cursor: pointer;
+        }
+
+        .third .top .profile .name_role {
+            height: 50px;
+            width: 100px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .third .top .profile .name_role .name {
+            font-size: 16px;
+            color: rgb(35, 153, 241);
+            line-height: 1.2;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .third .top .profile .name_role .role {
+            font-size: 14px;
+            color: rgb(181, 181, 181);
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .third .seconde {
+            height: 72px;
+        }
+
+        .third .seconde .chat-to {
+            /* background-color: black; */
+            width: 65%;
+            height: 72px;
+            float: right;
+        }
+
+        .third .seconde .search {
+            width: 35%;
+            height: 72px;
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+            padding-top: 20px;
+            padding-left: 20px;
+            float: left;
+        }
+
+        .third .seconde .chat-to .jump {
+            float: right;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-right: 15px;
+            border: 2px solid rgb(206, 208, 218);
+            box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .third .seconde .chat-to .jump .up-page {
+            width: 37px;
+            height: 37px;
+            padding-top: 14px;
+            box-sizing: border-box;
+            background-image: -moz-linear-gradient(90deg, rgb(241, 243, 247) 0%, rgb(255, 255, 255) 100%);
+            background-image: -webkit-linear-gradient(90deg, rgb(241, 243, 247) 0%, rgb(255, 255, 255) 100%);
+            background-image: -ms-linear-gradient(90deg, rgb(241, 243, 247) 0%, rgb(255, 255, 255) 100%);
+            border-right: 1px solid rgb(206, 208, 218);
+            float: left;
+            cursor: pointer;
+        }
+
+        .third .seconde .chat-to .jump .up-page .arrow-left {
+            width: 6px;
+            height: 10px;
+            margin-left: 15px;
+            background-image: url(./images/Arrow\ left.png);
+            background-repeat: no-repeat;
+        }
+
+        .third .seconde .chat-to .jump .next-page {
+            width: 37px;
+            height: 37px;
+            padding-top: 14px;
+            box-sizing: border-box;
+            background-image: -moz-linear-gradient(90deg, rgb(241, 243, 247) 0%, rgb(255, 255, 255) 100%);
+            background-image: -webkit-linear-gradient(90deg, rgb(241, 243, 247) 0%, rgb(255, 255, 255) 100%);
+            background-image: -ms-linear-gradient(90deg, rgb(241, 243, 247) 0%, rgb(255, 255, 255) 100%);
+            float: right;
+            cursor: pointer;
+        }
+
+        .third .seconde .chat-to .jump .next-page .arrow-right {
+            width: 6px;
+            height: 10px;
+            margin-left: 15px;
+            background-image: url(./images/Arrow\ right.png);
+            background-repeat: no-repeat;
+
+        }
+
+        .third .seconde .chat-to .page-number {
+            float: right;
+            margin-right: 20px;
+            margin-top: 28px;
+            font-size: 14px;
+            color: rgb(86, 104, 138);
+            line-height: 1.2;
+        }
+
+        .third .seconde .chat-to .line {
+            margin-top: 18px;
+            margin-right: 15px;
+            float: right;
+            background-color: rgb(206, 208, 218);
+            height: 37px;
+            width: 2px;
+
+        }
+
+        .third .seconde .chat-to .tools {
+            float: right;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-right: 15px;
+            border: 2px solid rgb(206, 208, 218);
+            box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .third .seconde .chat-to .tools .tool {
+            width: 37px;
+            height: 37px;
+            padding-top: 10px;
+            box-sizing: border-box;
+            background-image: -moz-linear-gradient(90deg, rgb(241, 243, 247) 0%, rgb(255, 255, 255) 100%);
+            background-image: -webkit-linear-gradient(90deg, rgb(241, 243, 247) 0%, rgb(255, 255, 255) 100%);
+            background-image: -ms-linear-gradient(90deg, rgb(241, 243, 247) 0%, rgb(255, 255, 255) 100%);
+            border-right: 1px solid rgb(206, 208, 218);
+            float: left;
+            cursor: pointer;
+        }
+
+        .third .seconde .chat-to .tools .tool .user {
+            width: 16px;
+            height: 16px;
+            margin-left: 10px;
+            background-image: url(./images/User\ icon.png);
+            background-repeat: no-repeat;
+        }
+
+        .third .seconde .chat-to .tools .tool .upload {
+            width: 16px;
+            height: 16px;
+            margin-left: 10px;
+            background-image: url(./images/Upload\ icon.png);
+            background-repeat: no-repeat;
+        }
+
+        .third .seconde .chat-to .tools .tool .trash {
+            width: 16px;
+            height: 16px;
+            margin-left: 10px;
+            background-image: url(./images/Trash\ icon.png);
+            background-repeat: no-repeat;
+        }
+
+
+        .third .seconde .search form {
+            width: 380px;
+            height: 40px;
+            background-color: rgb(229, 232, 238);
+        }
+
+        .third .seconde .search form .search-input {
+            width: 344px;
+            height: 40px;
+            border-color: rgb(229, 232, 238);
+        }
+
+        .third .seconde .search form .search-input::placeholder {
+            font-size: 14px;
+            color: rgba(159, 169, 186, 0.8);
+            line-height: 1.2;
+        }
+
+
+
+        .third .seconde .search form .submit {
+            height: 16px;
+            width: 16px;
+            margin: 10px;
+            background-image: url(./images/Search\ icon.png);
+            background-repeat: no-repeat;
+            float: right;
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgb(229, 232, 238);
+        }
+
+
+
+        .third .seconde .chat-to .name {
+            font-size: 18px;
+            color: rgb(88, 93, 104);
+            line-height: 1.2;
+            text-align: left;
+            box-sizing: border-box;
+            padding-top: 30px;
+            padding-left: 10px;
+            float: left;
+        }
+
+        .third .seconde .chat-to .status {
+            border-radius: 50%;
+            background-color: rgb(27, 185, 52);
+            width: 8px;
+            height: 8px;
+            float: left;
+            margin-top: 40px;
+            margin-left: 10px;
+        }
+
+        .third .final {
+            width: 100%;
+        }
+
+        .third .final .chats {
+            width: 35%;
+            height: 580px;
+            float: left;
+            overflow-y: auto;
+        }
+
+        .third .final .chats::-webkit-scrollbar {
+            /*滚动条整体部分，其中的属性有width,height,background,border等（就和一个块级元素一样）（位置1）*/
+            width: 4px;
+            height: 4px;
+        }
+
+        .third .final .chats::-webkit-scrollbar-track {
+            /*外层轨道，可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果（位置3）*/
+            background: #f6f6f6;
+            border-radius: 2px;
+
+        }
+
+        .third .final .chats::-webkit-scrollbar-thumb {
+            /*滚动条里面可以拖动的那部分（位置5）*/
+            background: #aaa;
+            border-radius: 2px;
+
+        }
+
+        .third .final .chats::-webkit-scrollbar-thumb:hover {
+            background: #747474;
+        }
+
+        .third .final .chats::-webkit-scrollbar-corner {
+            /*边角（位置6）*/
+            background: #f6f6f6;
+        }
+
+        .third .final .chats .chat {
+            padding-top: 10px;
+            border-bottom: 1px solid rgb(230, 233, 236);
+            padding-right: 10px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+
+        .third .final .chats .chat:hover {
+            border-left: 3px solid rgb(25, 145, 235);
+        }
+
+        .third .final .chats .chat .avatar {
+            border-radius: 50%;
+            background-image: url(./images/Face.png);
+            width: 46px;
+            height: 46px;
+            float: left;
+            margin-left: 20px;
+            margin-right: 10px;
+        }
+
+        .third .final .chats .chat .name_media {
+            float: left;
+            margin-top: 5px;
+        }
+
+        .third .final .chats .chat .name_media .name {
+            font-size: 16px;
+            font-family: "ProximaNova";
+            color: rgb(88, 93, 104);
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .third .final .chats .chat .name_media .media {
+            font-size: 14px;
+            font-family: "ProximaNova";
+            color: rgb(181, 181, 181);
+            line-height: 1.2;
+            text-align: left;
+            margin-top: 5px;
+        }
+
+        .third .final .chats .chat .date {
+            font-size: 14px;
+            font-family: "ProximaNova";
+            color: rgb(127, 143, 164);
+            line-height: 2.571;
+            text-align: right;
+        }
+
+        .third .final .chats .chat .content {
+            margin-top: 25px;
+            margin-left: 20px;
+            font-size: 14px;
+            font-family: "ProximaNova";
+            color: rgb(88, 93, 104);
+            line-height: 1.357;
+            /* width: 298px; */
+            height: 29px;
+            padding-bottom: 10px;
+        }
+
+        .third .final .open-chats {
+            width: 65%;
+            height: 580px;
+            float: right;
+            overflow-y: auto;
+        }
+
+        .third .final .open-chats::-webkit-scrollbar {
+            /*滚动条整体部分，其中的属性有width,height,background,border等（就和一个块级元素一样）（位置1）*/
+            width: 4px;
+            height: 4px;
+        }
+
+        .third .final .open-chats::-webkit-scrollbar-track {
+            /*外层轨道，可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果（位置3）*/
+            background: #f6f6f6;
+            border-radius: 2px;
+
+        }
+
+        .third .final .open-chats::-webkit-scrollbar-thumb {
+            /*滚动条里面可以拖动的那部分（位置5）*/
+            background: #aaa;
+            border-radius: 2px;
+
+        }
+
+        .third .final .open-chats::-webkit-scrollbar-thumb:hover {
+            background: #747474;
+        }
+
+        .third .final .open-chats::-webkit-scrollbar-corner {
+            /*边角（位置6）*/
+            background: #f6f6f6;
+        }
+
+        .third .final .open-chats .open-chat {
+            height: 80px;
+            padding-bottom: 30px;
+        }
+        
+
+        .third .final .open-chats .open-chat .avatar {
+            border-radius: 50%;
+            background-image: url(./images/Face.png);
+            width: 46px;
+            height: 46px;
+            float: left;
+            margin-left: 20px;
+            margin-right: 10px;
+            margin-top: 20px;
+        }
+
+        .third .final .open-chats .open-chat .message {
+            /* float: left; */
+            margin-left: 76px;
+        }
+
+        .third .final .open-chats .open-chat .message .name {
+            font-size: 16px;
+            font-family: "ProximaNova";
+            color: rgb(88, 93, 104);
+            line-height: 2.571;
+            text-align: left;
+            float: left;
+        }
+
+        .third .final .open-chats .open-chat .message .time {
+            font-size: 14px;
+            font-family: "ProximaNova";
+            color: rgb(127, 143, 164);
+            line-height: 3;
+            text-align: right;
+            float: left;
+            margin-left: 10px;
+        }
+
+        .third .final .open-chats .open-chat .message .detail {
+            float: left;
+            font-size: 14px;
+            font-family: "ProximaNova";
+            color: rgb(88, 93, 104);
+            line-height: 1.357;
+            width: 666px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left-nav">
+        <div class="navs">
+            <div class="nav item-1">
+                <div class="icon"></div>
+            </div>
+            <div class="nav item-2">
+                <div class="icon"></div>
+            </div>
+            <div class="nav item-3">
+                <div class="icon"></div>
+            </div>
+            <div class="nav add">
+                <div class="icon"></div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="grid"></div>
+            <div class="setting"></div>
+        </div>
+    </div>
+
+    <div class="secondary">
+        <div class="parts">
+            <div class="part">
+                <div class="header">
+                    <div class="header-setting"></div>
+                    <div class="header-name">menu</div>
+                </div>
+                <div class="item">
+                    <div class="item-name">Overview</div>
+                </div>
+                <div class="item">
+                    <div class="item-name">Sales</div>
+                    <div class="item-mess-count"></div>
+                </div>
+                <div class="item">
+                    <div class="item-name">Your Staff</div>
+                </div>
+                <div class="item">
+                    <div class="item-name">Analytics & Targeting</div>
+                </div>
+                <div class="item">
+                    <div class="item-name">What's New</div>
+                </div>
+
+            </div>
+
+            <div class="border"></div>
+
+            <div class="part">
+
+                <div class="header">
+                    <div class="header-setting"></div>
+                    <div class="header-name">your products</div>
+
+                </div>
+
+                <div class="item">
+                    <div class="icon"></div>
+                    <div class="item-name">Books</div>
+                </div>
+
+                <div class="item">
+                    <div class="icon"></div>
+                    <div class="item-name">Tutorials</div>
+                </div>
+
+                <div class="item">
+                    <div class="icon"></div>
+                    <div class="item-name">Stocks</div>
+                </div>
+
+                <div class="item">
+                    <div class="icon"></div>
+                    <div class="item-name">Infographics</div>
+                </div>
+            </div>
+
+            <div class="border"></div>
+
+            <div class="part">
+                <div class="header">
+                    <div class="header-setting"></div>
+                    <div class="header-name">dashboard</div>
+
+                </div>
+                <div class="item">
+
+                    <div class="item-name">Messages</div>
+                </div>
+                <div class="item">
+
+                    <div class="item-name">Connections</div>
+                </div>
+                <div class="item">
+                    <div class="item-name">Integrations</div>
+                </div>
+                <div class="item">
+                    <div class="item-name">Account Settings</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-name">App Settings</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="server-capacity">
+            <div class="title-bar">
+                <div class="money">
+                    $580/$3200
+                </div>
+                <div class="title">
+                    Monthly Goals
+                </div>
+
+            </div>
+            <div class="bar">
+                <div class="current-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="third">
+        <div class="top">
+            <div class="profile">
+                <div class="photo"></div>
+                <div class="name_role">
+                    <div class="name">
+                        Jordan J.
+                    </div>
+                    <div class="role">
+                        Administrator
+                    </div>
+                </div>
+            </div>
+            <div class="top-title">
+                Messages
+            </div>
+            <div class="other"></div>
+        </div>
+
+        <div class="seconde">
+
+            <div class="search">
+                <form action="">
+                    <input type="search" class="search-input" placeholder="Search">
+                    <input type="submit" class="submit" value="">
+                </form>
+            </div>
+
+            <div class="chat-to">
+
+                <div class="jump">
+                    <div class="next-page">
+                        <div class="arrow-right"></div>
+                    </div>
+
+                    <div class="up-page">
+                        <div class="arrow-left"></div>
+                    </div>
+
+                </div>
+
+                <div class="page-number">
+                    1 of 28
+                </div>
+
+                <div class="line"></div>
+
+                <div class="tools">
+                    <div class="tool ">
+                        <div class="user"></div>
+                    </div>
+                    <div class="tool upload">
+                        <div class="upload"></div>
+                    </div>
+                    <div class="tool trash">
+                        <div class="trash"></div>
+                    </div>
+                </div>
+                <div class="border"></div>
+                <div class="name">
+                    Bessie Berry
+                </div>
+                <div class="status"></div>
+            </div>
+
+        </div>
+
+        <div class="final">
+            <div class="chats">
+                <div class="chat">
+                    <div class="avatar"></div>
+                    <div class="name_media">
+                        <div class="name">Sally willis</div>
+                        <div class="media">Twitter</div>
+                    </div>
+                    <div class="date">12 Jun</div>
+                    <div class="content">
+                        Yes, it's O2: 'internet extreme', which is no longer offered.
+                    </div>
+                </div>
+                <div class="chat">
+                    <div class="avatar"></div>
+                    <div class="name_media">
+                        <div class="name">Sally willis</div>
+                        <div class="media">Twitter</div>
+                    </div>
+                    <div class="date">12 Jun</div>
+                    <div class="content">
+                        Yes, it's O2: 'internet extreme', which is no longer offered.
+                    </div>
+                </div>
+                <div class="chat">
+                    <div class="avatar"></div>
+                    <div class="name_media">
+                        <div class="name">Sally willis</div>
+                        <div class="media">Twitter</div>
+                    </div>
+                    <div class="date">12 Jun</div>
+                    <div class="content">
+                        Yes, it's O2: 'internet extreme', which is no longer offered.
+                    </div>
+                </div>
+                <div class="chat">
+                    <div class="avatar"></div>
+                    <div class="name_media">
+                        <div class="name">Sally willis</div>
+                        <div class="media">Twitter</div>
+                    </div>
+                    <div class="date">12 Jun</div>
+                    <div class="content">
+                        Yes, it's O2: 'internet extreme', which is no longer offered.
+                    </div>
+                </div>
+                <div class="chat">
+                    <div class="avatar"></div>
+                    <div class="name_media">
+                        <div class="name">Sally willis</div>
+                        <div class="media">Twitter</div>
+                    </div>
+                    <div class="date">12 Jun</div>
+                    <div class="content">
+                        Yes, it's O2: 'internet extreme', which is no longer offered.
+                    </div>
+                </div>
+                <div class="chat">
+                    <div class="avatar"></div>
+                    <div class="name_media">
+                        <div class="name">Sally willis</div>
+                        <div class="media">Twitter</div>
+                    </div>
+                    <div class="date">12 Jun</div>
+                    <div class="content">
+                        Yes, it's O2: 'internet extreme', which is no longer offered.
+                    </div>
+                </div>
+            </div>
+
+            <div class="open-chats">
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+                <div class="open-chat">
+                    <div class="avatar"></div>
+                    <div class="message">
+                        <div class="name">Bessie Berry</div>
+                        <div class="time">8:31 AM</div>
+                        <div class="detail">
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                            Hi guys Ive got the O2 package and have really slow internet. A
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
