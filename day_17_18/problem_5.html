@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ife</title>
+</head>
+<body>
+    <table id="times-table">
+    </table>
+    <script>
+        var times_table = document.getElementById("times-table");
+
+        var table = "";
+
+        for (let i = 1; i < 10; i++) {
+            var row = "";
+            var tr = "";   
+            
+            for (let j = 1; j < 10; j++) {
+                if(j > i){
+                    break;
+                }else {
+                    row = row + j +" * " + i + " = " + (j*i) + " ,";
+                    tr = tr + "<td> " + j +" * " + i + " = " + (j*i) +"&nbsp;"+ "</td>";
+                }
+            }
+
+            console.log(row);
+            table = table + "<tr>" + tr + "</tr>";
+
+        }
+
+        times_table.innerHTML = table
+    </script>
+</body>
+</html>
