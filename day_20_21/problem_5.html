@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day_20_21</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        .avator{
+            height: 480px;
+            width: 480px;
+            background-image: url(./images/erik_ce204002.jpg);
+            background-repeat: no-repeat;
+            /* background-position: 0px -960px; */
+        }
+    </style>
+</head>
+<body>
+    <div id="avator" class="avator"></div>
+    <script>
+        var avator = document.getElementById("avator");
+        avator.style.backgroundPositionY = '0px';
+        var up = true;
+        var i = 0;
+        setInterval(() => {
+            if( up == true){
+                i += 1;
+                avator.style.backgroundPositionY = (i * -480) +'px';
+                if(i >= 16){
+                    up = false;
+                }
+            }else{
+                i -= 1;
+                avator.style.backgroundPositionY = (i * -480) +'px';
+                if(i <= 0){
+                    up = true;
+                }
+            }
+        }, 100);
+
+    </script>
+</body>
+</html>
