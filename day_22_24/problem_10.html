@@ -41,39 +41,30 @@ function ObjectToArray(object){
 console.log(ObjectToArray(scoreObject));
 
 var menuArr = [
-    [1, "Area1", -1],
-    [2, "Area2", -1],
-    [3, "Area1-1", 1],
-    [4, "Area1-2", 1],
-    [5, "Area2-1", 2],
-    [6, "Area2-2", 2],
-    [7, "Area1-2-3", 4],
-    [8, "Area2-2-1", 6],
-];
-
-function arrayToObject(array){
-    var object = {};
-    for (let index = 0; index < array.length; index++) {
-        if(array[index][2] == -1){
-            let temp = {"name": array[index][1]};
-            object[array[index][0]] = temp;
-        }else{
-            if( object[array[index][2]] != null){
-                let temp = {"name": array[index][1]};
-                let upObject = {};
-                upObject[array[index][0]] = temp;
-
-                let parentObject = object[array[index][2]];
-                parentObject["subMenu"] = upObject;
-                object[array[index][2]] = parentObject;
-            }else{
-                
+        [1, "Area1", -1],
+        [2, "Area2", -1],
+        [3, "Area1-1", 1],
+        [4, "Area1-2", 1],
+        [5, "Area2-1", 2],
+        [6, "Area2-2", 2],
+        [7, "Area1-2-3", 4],
+        [8, "Area2-2-1", 6],
+    ];
+    console.log("数组转对象:");
+    function get(num) {
+        let obj = {};
+        for(let i in menuArr){
+            if(menuArr[i][2] == num){
+                obj[menuArr[i][0]] = {
+                    "name" : menuArr[i][1],
+                    //以数组序列号作为递归条件
+                    "subMenu" : get(menuArr[i][0])
+                };
             }
         }
+        return obj;
     }
-    console.log(object);
-}
-arrayToObject(menuArr);
+    console.log(get(-1));
     </script>
 </body>
 </html>
