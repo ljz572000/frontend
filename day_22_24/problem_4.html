@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var tree = {
+    "id": 0,
+    "name": "root",
+    "left": {
+        "id": 1,
+        "name": "Simon",
+        "left": {
+            "id": 3,
+            "name": "Carl",
+            "left": {
+                "id": 7,
+                "name": "Lee",
+                "left": {
+                    "id": 11,
+                    "name": "Fate"
+                }
+            },
+            "right": {
+                "id": 8,
+                "name": "Annie",
+                "left": {
+                    "id": 12,
+                    "name": "Saber"
+                }
+            }
+        },
+        "right": {
+            "id": 4,
+            "name": "Tony",
+            "left": {
+                "id": 9,
+                "name": "Candy"
+            }
+        }
+    },
+    "right": {
+        "id": 2,
+        "name": "right",
+        "left": {
+            "id": 5,
+            "name": "Carl",
+        },
+        "right": {
+            "id": 6,
+            "name": "Carl",
+            "right": {
+                "id": 10,
+                "name": "Kai"
+            }        
+        }
+    }
+}
+
+// 假设id和name均不会重复，根据输入name找到对应的id
+function findIdByName(name) {
+    var node_list = new Array();
+    let id = null;
+    let dfs = function(node){
+        if(node){
+            if(node.name != name){
+                dfs(node.left);
+                dfs(node.right);
+            }else{
+                id = node.id;
+            }
+        }
+    }
+    dfs(tree);
+    return id;
+}
+console.log(findIdByName("Candy"));
+// 假设id和name均不会重复，根据输入id找到对应的name
+function findNameById(id) {
+    var node_list = new Array();
+    let name = null;
+    let dfs = function(node){
+        if(node){
+            if(node.id != id){
+                dfs(node.left);
+                dfs(node.right);
+            }else{
+                name = node.name;
+            }
+        }
+    }
+    dfs(tree);
+    return name;
+}
+console.log(findNameById(6));
+// 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+function getListWithDLR() {
+    var result = new Array();
+    let dfs = function(node){
+        if(node){
+            result.push(node.name);
+            dfs(node.left);
+            dfs(node.right);
+        }
+    }
+    dfs(tree);
+    return result;
+}
+
+console.log(getListWithDLR());
+
+// 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+function getListWithLDR() {
+    var result = new Array();
+    let dfs = function(node){
+        if(node){
+            dfs(node.left);
+            result.push(node.name);
+            dfs(node.right);
+        }
+    }
+    dfs(tree);
+    return result;
+}
+console.log(getListWithLDR());
+// 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+function getListWithLRD() {
+    var result = new Array();
+    let dfs = function(node){
+        if(node){
+            dfs(node.left);
+            dfs(node.right);
+            result.push(node.name);
+        }
+    }
+    dfs(tree);
+    return result;
+}
+
+console.log(getListWithLRD());
+    </script>
+</body>
+</html>

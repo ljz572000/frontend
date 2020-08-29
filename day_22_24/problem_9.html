@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+    function bubble(arr){
+        for(let i = 0; i<arr.length; i++){
+            for(let j = i+1; j< arr.length; j++){
+                if(arr[j]>arr[i]){
+                    let temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+    function bubble2(arr){
+        for(let i = 0; i<arr.length; i++){
+            for(let j = i+1; j< arr.length; j++){
+                if(arr[j]<arr[i]){
+                    let temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+    console.log(bubble(arr).join(", "));
+    console.log(bubble2(arr).join(", "));
+ 
+
+    var arr2 = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+
+    function atoZ(arr){
+        for(let i =0; i<arr.length; i++){
+            for(let j = i+1; j< arr.length; j++){
+                if(arr[j]<arr[i]){
+                    let temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+
+    
+    function zToA(arr){
+        for(let i =0; i<arr.length; i++){
+            for(let j = i+1; j< arr.length; j++){
+                if(arr[j]>arr[i]){
+                    let temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+
+    console.log(atoZ(arr2).join(", "));
+    console.log(zToA(arr2).join(", "));
+
+
+    var arr3 = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+
+    function arraybubble(array){
+        for (let i = 0; i < array.length; i++) {
+            for (let j = i+1; j < array.length; j++){
+                if(array[j][1]>array[i][1]){
+                    let temp = array[j];
+                    array[j] = array[i];
+                    array[i] = temp;
+                }
+            }
+        }
+        return array;
+    }
+
+    function arraybubble2(array){
+        for (let i = 0; i < array.length; i++) {
+            for (let j = i+1; j < array.length; j++){
+                if(array[j][1]<array[i][1]){
+                    let temp = array[j];
+                    array[j] = array[i];
+                    array[i] = temp;
+                }
+            }
+        }
+        return array;
+    }
+
+    console.log(arraybubble(arr3));
+    console.log(arraybubble2(arr3));
+
+
+    var arr4 = [
+    {
+        id: 1,
+        name: 'candy',
+        value: 40
+    }, {
+        id: 2,
+        name: 'Simon',
+        value: 50
+    }, {
+        id: 3,
+        name: 'Tony',
+        value: 45
+    }, {
+        id: 4,
+        name: 'Annie',
+        value: 60
+    }
+];
+
+function dicBubble(array){
+    for (let i = 0; i < array.length; i++) {
+        for (let j = i+1; j < array.length; j++)  {
+            if(array[j].value > array[i].value){
+                let temp = array[j];
+                array[j] = array[i];
+                array[i] = temp;
+            }
+        }
+    }
+    return array;
+}
+
+function dicBubble2(array){
+    for (let i = 0; i < array.length; i++) {
+        for (let j = i+1; j < array.length; j++)  {
+            if(array[j].value > array[i].value){
+                let temp = array[j];
+                array[j] = array[i];
+                array[i] = temp;
+            }
+        }
+    }
+    return array;
+}
+
+console.log(dicBubble(arr4));
+console.log(dicBubble2(arr4));
+</script>
+</body>
+</html>

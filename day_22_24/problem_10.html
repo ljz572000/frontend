@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var scoreObject = {
+    "Tony": {
+        "Math": 95,
+        "English": 79,
+        "Music": 68
+    }, 
+    "Simon": {
+        "Math": 100,
+        "English": 95,
+        "Music": 98
+    }, 
+    "Annie": {
+        "Math": 54,
+        "English": 65,
+        "Music": 88
+    }
+}
+
+function ObjectToArray(object){
+    var array = [];
+   for( i in object){
+        let arr = [];
+        arr.push(i);
+        arr.push(object[i].Math);
+        arr.push(object[i].English);
+        arr.push(object[i].Music);
+        array.push(arr);
+   }
+    return array;
+}
+
+console.log(ObjectToArray(scoreObject));
+
+var menuArr = [
+    [1, "Area1", -1],
+    [2, "Area2", -1],
+    [3, "Area1-1", 1],
+    [4, "Area1-2", 1],
+    [5, "Area2-1", 2],
+    [6, "Area2-2", 2],
+    [7, "Area1-2-3", 4],
+    [8, "Area2-2-1", 6],
+];
+
+function arrayToObject(array){
+    var object = {};
+    for (let index = 0; index < array.length; index++) {
+        if(array[index][2] == -1){
+            let temp = {"name": array[index][1]};
+            object[array[index][0]] = temp;
+        }else{
+            if( object[array[index][2]] != null){
+                let temp = {"name": array[index][1]};
+                let upObject = {};
+                upObject[array[index][0]] = temp;
+
+                let parentObject = object[array[index][2]];
+                parentObject["subMenu"] = upObject;
+                object[array[index][2]] = parentObject;
+            }else{
+                
+            }
+        }
+    }
+    console.log(object);
+}
+arrayToObject(menuArr);
+    </script>
+</body>
+</html>
