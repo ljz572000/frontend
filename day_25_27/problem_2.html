@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="content"></p>
+    <script>
+        var content = document.getElementById("content");
+        
+        function showDate(){
+            let date = new Date();
+            let year = date.getFullYear();
+            let month = date.getMonth()+1;
+            let day = date.getDate();
+            let weekday = week();
+            let hours = checkTime(date.getHours());
+            let min = checkTime(date.getMinutes());
+            let seconds = checkTime(date.getSeconds());
+            content.innerHTML = formatDate(year, month, day, weekday, hours, min, seconds);
+            let t = setTimeout("showDate()", 1000);
+        }
+
+        function formatDate(year, month, day, weekday, hours, min, seconds){
+            return year+"年"+month+"月"+day+"日" +weekday+" "+hours+":"+min+":"+seconds;
+        }
+
+        function week(date = new Date()){
+            let week = date.getDay();
+            let weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+            return weekday[week];
+        }
+
+        function checkTime(i)
+        {
+            if (i<10) {i="0" + i}
+            return i
+        }
+
+        showDate();
+    </script>
+</body>
+</html>

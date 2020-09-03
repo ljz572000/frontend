@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="year-select">
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+        ……
+        <option value="2032">2002</option>
+    </select>
+    
+    <select id="month-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        ……
+        <option value="12">12</option>
+    </select>
+    
+    <select id="day-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        ……
+        <option value="31">31</option>
+    </select>
+    
+    <select id="hour-select">
+        <option value="0">00</option>
+        <option value="1">01</option>        
+        ……
+        <option value="23">23</option>
+    </select>
+    
+    <select id="minite-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        ……
+        <option>59</option>
+    </select>
+    
+    <select id="second-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        ……
+        <option>59</option>
+    </select>
+    
+    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+    <script>
+        var yearSelect = document.getElementById("year-select");
+        var monthSelect = document.getElementById("month-select");
+        var daySelect = document.getElementById("day-select");
+        var hourSelect = document.getElementById("hour-select");
+        var miniteSelect = document.getElementById("minite-select");
+        var secondSelect = document.getElementById("second-select");
+        var resultWrapper = document.getElementById("result-wrapper");
+
+        yearSelect.innerHTML = setOption(2001, 2033);
+        monthSelect.innerHTML = setOption(1,13);
+        daySelect.innerHTML = setOption(1,32);
+        hourSelect.innerHTML =  setOption(0,24);
+        miniteSelect.innerHTML = setOption(0,60);
+        secondSelect.innerHTML =  setOption(0,60);
+
+        result();
+
+        monthSelect.addEventListener("change", function(){
+            let year = yearSelect.value;
+            let month = monthSelect.value;
+
+            if(month % 2 == 0 && month != 8){
+                daySelect.innerHTML = setOption(1,31);
+            }else{
+                daySelect.innerHTML = setOption(1, 32);
+            }
+
+            if(year % 4 == 0 || year % 400 == 0){
+                if(month == 2){
+                    daySelect.innerHTML = setOption(1,30);
+                }
+            }else if(month == 2){
+                daySelect.innerHTML =  setOption(1,29);
+            }            
+        })
+
+        function result(){
+           let year = yearSelect.value;
+           let month = monthSelect.value;
+           let day = daySelect.value;
+           let hour = hourSelect.value;
+           let minite = miniteSelect.value;
+           let second = secondSelect.value;
+           let selectDate = new Date(year+"-"+month+"-"+day+" "+hour+":"+minite+":"+second);
+           resultWrapper.innerHTML =  "现在距离 "+year+"年"+month+"月"+day+"日"+week(selectDate)+" "+checkTime(hour)+":"+checkTime(minite)+":"+second+cacultor(selectDate);
+           let t = setTimeout("result()",1000);
+        }
+
+        function cacultor(selectDate){
+            let today = new Date();
+            let difference = "";
+            
+            let newDate ;
+            let oldDate ;
+            if(today > selectDate){
+               newDate = today;
+               oldDate = selectDate;
+               difference = " 已经过去 ";
+           }else{
+               newDate = selectDate;
+               oldDate = today;
+               difference =  "还有 ";
+           }
+
+           let difftime = (newDate - oldDate)/1000;
+           let diffdays = parseInt(difftime/86400); // 天  24*60*60*1000 
+           let diffhours = parseInt(difftime/3600)-24*diffdays;    // 小时 60*60 总小时数-过去的小时数=现在的小时数 
+   	       let diffminutes = parseInt(difftime%3600/60); // 分钟 -(day*24) 以60秒为一整份 取余 剩下秒数 秒数/60 就是分钟数
+   	       let diffseconds = parseInt(difftime%60);  // 以60秒为一整份 取余 剩下秒数
+           
+           return difference+diffdays+"天"+diffhours+"小时"+diffminutes+"分钟"+diffseconds+"秒";
+        }
+
+        function week(date = new Date()){
+            let week = date.getDay();
+            let weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+            return weekday[week];
+        }
+
+        function setOption(start, end){
+            var option = "";
+            for (let index = start; index < end; index++) {
+                option = option + "<option value="+index+">"+index+"</option>";
+            }
+            return option;
+        }
+
+        function checkTime(i)
+        {
+            if (i<10) {i="0" + i}
+            return i
+        }
+
+    
+
+    </script>
+</body>
+</html>

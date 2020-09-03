@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="content"></p>
+    <script>
+        var content = document.getElementById("content");
+        
+        function showDate(){
+            let date = new Date();
+            let year = date.getFullYear();
+            let month = checkTime(date.getMonth()+1);
+            let day = checkTime(date.getDate());
+            let weekday = week();
+            let hours = formathours(date);
+            let min = checkTime(date.getMinutes());
+            let seconds = checkTime(date.getSeconds());
+            content.innerHTML = formatDate(year, month, day, weekday, hours, min, seconds, time(date));
+            let t = setTimeout("showDate()", 1000);
+        }
+
+        function formatDate(year, month, day, weekday, hours, min, seconds, time){
+            return year+"-"+month+"-"+day+" " +weekday+" "+hours+":"+min+":"+seconds+ " "+ time;
+        }
+
+        function formathours(date){
+            let hours = date.getHours();
+            if(hours>12){
+                hours = hours - 12;
+            }
+            return checkTime(hours);
+        }
+
+        function time(date){
+            let hours = checkTime(date.getHours());
+            if(hours>12){
+                return "PM";
+            }
+            return "AM";
+        }
+
+        function week(date = new Date()){
+            let week = date.getDay();
+            let weekday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            return weekday[week];
+        }
+
+        function checkTime(i)
+        {
+            if (i<10) {i="0" + i}
+            return i
+        }
+
+        showDate();
+    </script>
+</body>
+</html>
